@@ -1,4 +1,4 @@
-# demo1
+# Vuejs practice
 
 ## Project setup
 ```
