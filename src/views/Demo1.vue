@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="demo1">
     <h1>ToDo App</h1>
     <form @submit.prevent="addTodo()">
       <label>New ToDo </label>
@@ -8,10 +8,14 @@
     </form>
     <h2>ToDo List</h2>
     <ul>
-      <li v-for="(todo, index) in todos" :key="index">
-        <span :class="{ done: todo.done }" @click="doneTodo(todo)">{{
-          todo.content
-        }}</span>
+      <li
+        v-for="(todo, index) in todos"
+        :key="index"
+      >
+        <span 
+          :class="{ done: todo.done }"
+          @click="doneTodo(todo)"
+        >{{ todo.content }}</span>
         <button @click="removeTodo(index)">Remove</button>
       </li>
     </ul>
@@ -48,7 +52,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 $border: 2px solid
   rgba(
     $color: white,
@@ -64,14 +68,7 @@ $textColor: white;
 $primaryColor: #a0a4d9;
 $secondTextColor: #1f2023;
 body {
-  margin: 0;
-  padding: 0;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: $backgroundColor;
-  color: $textColor;
-  #app {
+  #demo1 {
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;

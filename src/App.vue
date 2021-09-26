@@ -1,56 +1,14 @@
 <template>
   <div id="app">
-    <h1>ToDo App</h1>
-    <form @submit.prevent="addTodo()">
-      <label>New ToDo </label>
-      <input v-model="newTodo" name="newTodo" autocomplete="off" />
-      <button>Add ToDo</button>
-    </form>
-    <h2>ToDo List</h2>
-    <ul>
-      <li
-        v-for="(todo, index) in todos"
-        :key="index"
-      >
-        <span 
-          :class="{ done: todo.done }"
-          @click="doneTodo(todo)"
-        >{{ todo.content }}</span>
-        <button @click="removeTodo(index)">Remove</button>
-      </li>
-    </ul>
-    <h4 v-if="todos.length == 0">Empty list.</h4>
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/demo1">Demo1</router-link> |
+      <router-link to="/demo2">Demo2</router-link> |
+      <router-link to="/demo3">Demo3</router-link> |
+    </div>
+    <router-view />
   </div>
 </template>
-
-<script>
-export default {
-  name: "App",
-  data() {
-    return {
-      newTodo: "",
-      todos: [],
-    };
-  },
-  methods: {
-    addTodo: function () {
-      if (this.newTodo) {
-        this.todos.push({
-          done: false,
-          content: this.newTodo,
-        });
-        this.newTodo = "";
-      }
-    },
-    doneTodo: function (todo) {
-      todo.done = !todo.done;
-    },
-    removeTodo: function (index) {
-      this.todos.splice(index, 1);
-    },
-  },
-};
-</script>
 
 <style lang="scss">
 $border: 2px solid
@@ -73,84 +31,24 @@ body {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: $backgroundColor;
-  color: $textColor;
-  #app {
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 20px;
-    h1 {
+  background-color: #27292d;
+  color: #ffffff;
+}
+</style>
+<style lang="scss" scoped>
+#app {
+  text-align: center;
+  #nav {
+    padding: 30px;
+
+    a {
+      font-size: 20px;
       font-weight: bold;
-      font-size: 28px;
-      text-align: center;
-    }
-    form {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      label {
-        font-size: 14px;
-        font-weight: bold;
+      color: #dbdbdb;
+
+      &.router-link-exact-active {
+        color: #42b983;
       }
-      input,
-      button {
-        height: $size5;
-        box-shadow: none;
-        outline: none;
-        padding-left: $size2;
-        padding-right: $size2;
-        border-radius: $size1;
-        font-size: 18px;
-        margin-top: $size1;
-        margin-bottom: $size2;
-      }
-      input {
-        background-color: transparent;
-        border: $border;
-        color: inherit;
-      }
-    }
-    button {
-      cursor: pointer;
-      background-color: $primaryColor;
-      border: 1px solid $primaryColor;
-      color: $secondTextColor;
-      font-weight: bold;
-      outline: none;
-      border-radius: $size1;
-    }
-    h2 {
-      font-size: 22px;
-      border-bottom: $border;
-      padding-bottom: $size1;
-    }
-    ul {
-      padding: 10px;
-      li {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border: $border;
-        padding: $size2 $size4;
-        border-radius: $size1;
-        margin-bottom: $size2;
-        span {
-          cursor: pointer;
-        }
-        .done {
-          text-decoration: line-through;
-        }
-        button {
-          font-size: $size2;
-          padding: $size1;
-        }
-      }
-    }
-    h4 {
-      text-align: center;
-      opacity: 0.5;
-      margin: 0;
     }
   }
 }
